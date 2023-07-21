@@ -206,7 +206,7 @@ def main():
                                   \/____/                          ~~                       \|___|                   \/____/                  ~~              
 ''')
    print("Brian Hill 2023")
-   print("github link lmao")
+   print("https://github.com/TrojanPinata/PiDraw")
    f = input("Press d to enter debug or anything else to continue normally.")
    if f == "d":
       debug()

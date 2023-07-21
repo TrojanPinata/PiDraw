@@ -6,7 +6,7 @@ import picture, dot
 filepath = ''
 
 root = Tk()
-root.geometry("500x600")
+root.geometry("500x500")
 root.title("PyDraw v1.1")
 
 def returnHome(frame):
@@ -50,14 +50,14 @@ def optionsCheck(colorCheck, scaleField, thresholdField):
         return True
     return False
 
-def runPicture(frame, colorCheck, scaleField, thresholdField, drawCheck, invertCheck):
+def runPicture(frame, colorCheck, scaleField, thresholdField, drawCheck):
     if not optionsCheck(colorCheck, scaleField, thresholdField):
         frontPage(frame)
     else:
         if drawCheck:
             picture.bezierConversion(filepath, scaleField)
         else:
-            picture.processPrint(filepath, colorCheck, thresholdField, scaleField, invertCheck)
+            picture.processPrint(filepath, colorCheck, thresholdField, scaleField)
 
 def frontPage(frame0=None):
     global filepath
@@ -79,21 +79,18 @@ def frontPage(frame0=None):
     thresholdField = 128
     drawCheck = False
     colorCheck = False
-    invertCheck = False
 
     colorCheckText = Label(frame, text="Color", font=("IBM Plex Sans", 10))
     colorEntry = Checkbutton(frame, text="", variable=colorCheck, onvalue=True, offvalue=False)
-    invertCheckText = Label(frame, text="Invert", font=("IBM Plex Sans", 10))
-    invertEntry = Checkbutton(frame, text="", variable=invertCheck, onvalue=True, offvalue=False)
     scaleFieldText = Label(frame, text="Scale (1 - 10)", font=("IBM Plex Sans", 10))
     scaleEntry = Entry(frame, textvariable=scaleField, width=10)
     thresholdFieldText = Label(frame, text="Threshold (0 - 255)", font=("IBM Plex Sans", 10))
     thresholdEntry = Entry(frame, textvariable=thresholdField, width=10)
     drawText = Label(frame, text="Draw", font=("IBM Plex Sans", 10))
     drawEntry = Checkbutton(frame, text="", variable=drawCheck, onvalue=True, offvalue=False)
-    debugBtn = Button(frame, text="Debug", bd="5", command=lambda: dot.debug())
+    debugBtn = Button(frame, text="Debug", bd="5", command=lambda: debug())
     exitBtn = Button(frame, text="Exit", bd="5", command=lambda: cleanExit())
-    submitBtn = Button(frame, text="Print", bd="5", command=lambda: runPicture(frame, colorCheck, scaleField, thresholdField, drawCheck, invertCheck))
+    submitBtn = Button(frame, text="Print", bd="5", command=lambda: runPicture(frame, colorCheck, scaleField, thresholdField, drawCheck))
 
     headerText.grid(row = 0, column = 0, pady=(15,15))
     browseBtn.grid(row = 1, column = 0, pady=(15,15))
@@ -102,15 +99,13 @@ def frontPage(frame0=None):
     drawEntry.grid(row = 2, column = 1, pady=(15,15))
     colorCheckText.grid(row = 3, column = 0, pady=(15,15))
     colorEntry.grid(row = 3, column = 1, pady=(15,15))
-    invertCheckText.grid(row = 4, column = 0, pady=(15,15))
-    invertEntry.grid(row = 4, column = 1, pady=(15,15))
-    scaleFieldText.grid(row = 5, column = 0, pady=(15,15))
-    scaleEntry.grid(row = 5, column = 1, pady=(15,15))
-    thresholdFieldText.grid(row = 6, column = 0, pady=(15,15))
-    thresholdEntry.grid(row = 6, column = 1, pady=(15,15))
-    submitBtn.grid(row = 7, column = 0, pady=(15,15))
-    debugBtn.grid(row = 8, column = 0, pady=(15,15))
-    exitBtn.grid(row = 8, column = 1, pady=(15,15))
+    scaleFieldText.grid(row = 4, column = 0, pady=(15,15))
+    scaleEntry.grid(row = 4, column = 1, pady=(15,15))
+    thresholdFieldText.grid(row = 5, column = 0, pady=(15,15))
+    thresholdEntry.grid(row = 5, column = 1, pady=(15,15))
+    submitBtn.grid(row = 6, column = 0, pady=(15,15))
+    debugBtn.grid(row = 7, column = 0, pady=(15,15))
+    exitBtn.grid(row = 7, column = 1, pady=(15,15))
 
 def cleanExit():
     dot.releaseAll()

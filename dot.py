@@ -67,13 +67,13 @@ def findPoint(xMod, yMod):
 
    for i in range(abs(abs(xInit) - abs(xMod))):
       time.sleep(stepDelay)
-      motor.step(True, xDirection)
+      motor.halfStep(True, xDirection)
       #print("x = " + str(x))       # these have been so helpful
       updatePos(True, xDirection)
 
    for j in range(abs(abs(yInit) - abs(yMod))):
       time.sleep(stepDelay)
-      motor.step(False, yDirection)
+      motor.halfStep(False, yDirection)
       #print("y = " + str(y))
       updatePos(False, yDirection)
 
